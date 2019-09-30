@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang='en' dir='ltr'>
+<?php
+$web = "KUCPE";
+$topic = "ข้อมูลอาจารย์ (Info Teacher)";
 
+?>
 <!--############################################## Head ###########################################################################-->
 <head>
 	<!-- Okp config -->
@@ -37,7 +41,7 @@
             /* z-index: -1; */
         }
     </style>
-	<title>Index</title>
+	<title><?php echo $web ?></title>
 </head>
 
 <!--############################################## Header ###########################################################################-->
@@ -57,7 +61,7 @@
 			<!-- End Bar -->
 			<div class="col-sm-10 well text-left size bgimg">
 				<div class="colora"style="padding: 10px">
-						<h2>ข้อมูลอาจารย์</h2>
+						<h2><?php echo $topic ?></h2>
 				</div>
 				<!-- <div class="container well w3-white"> -->
 					<!-- <h2 style="font-size: 32px;"><u>ข้อมูลอาจารย์</u></h2> -->
@@ -70,7 +74,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <!-- <tr>
                 <td>ผศ.ดร.ประวิทย์ ชุมชู</td>
                 <td>Network</td>
                 <td>7/7</td>
@@ -119,7 +123,38 @@
                 <td>ดร.กรวิทย์ ออกผล์์</td>
                 <td>Everything</td>
                 <td>8/8</td>
-              </tr>
+              </tr> -->
+							<?php
+							$count = 0;
+							$teacher = array();
+							$last = array();
+							$ability = array();
+							$done = array();
+							foreach ($show->result() as $row)
+							{
+									array_push($teacher, $row->fname);
+									array_push($last, $row->lname);
+									array_push($ability, $row->ability);
+									array_push($done, $row->adviser);
+									$count++;
+									// echo $row->fname;
+							}
+							for ($i = 0; $i < $count; $i++)
+							{
+
+									echo "<tr>
+											<td>
+													" . $teacher[$i]," ",$last[$i] . "
+											</td>
+											<td>
+													" . $ability[$i] . "
+											</td>
+											<td>
+													" . $done[$i] , "/8". "
+											</td>
+									</tr>";
+							}
+							?>
             </tbody>
           </table>
 				<!-- </div> -->

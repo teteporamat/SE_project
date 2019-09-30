@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang='en' dir='ltr'>
+<?php
+$web = "KUCPE";
+$topic = "ประกาศ(Student)";
 
+?>
 <!--############################################## Head ###########################################################################-->
 <head>
 	<!-- Okp config -->
@@ -37,7 +41,7 @@
             /* z-index: -1; */
         }
     </style>
-	<title>Index</title>
+	<title><?php echo $web ?></title>
 </head>
 
 <!--############################################## Header ###########################################################################-->
@@ -57,12 +61,18 @@
 			<!-- End Bar -->
 			<div class="col-sm-10 well text-left size bgimg">
 				<div class="colora"style="padding: 10px">
-						<h2>ประกาศ</h2>
+						<h2><?php echo $topic ?></h2>
 				</div>
 				<!-- <div class="container-fluid"> -->
 
 							<div class="well">
-								<h1 class="notice">นิสิตสามารถเริ่มหาอาจารย์ที่ปรึกษาระหว่างวันที่ 20 ม.ค. - 20 ก.พ. </h1>
+								<?php foreach ($show->result() as $row) { ?>
+									<form action='<?= base_url('Controller/notice') ?>' method='post'>
+										<button type="submit" class="btn" name="notice_id" value="<?php echo $row->notice_id; ?>">
+											<p class="notice"><?php echo $row->topic ?></p>
+										</button>
+									</form>
+								<?php } ?>
 							</div>
 					<!-- <div style=" padding: 10px">
 						<h2 class="notice">นิสิตสามารถเริ่มหาอาจารย์ที่ปรึกษาระหว่างวันที่ 20 ม.ค. - 20 ก.พ. </h2>

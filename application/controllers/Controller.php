@@ -317,11 +317,15 @@ class Controller extends CI_Controller
 	// Pages
 	public function home_std()
 	{
-		$this->load->view('pages/student/home_std');
+		$this->load->model('model');
+		$data['show'] = $this->model->m_show_notice();
+		$this->load->view('pages/student/home_std', $data);
 	}
 	public function infotch_std()
 	{
-		$this->load->view('pages/student/infotch_std');
+		$this->load->model('model');
+		$data['show'] = $this->model->m_show_teacher();
+		$this->load->view('pages/student/infotch_std', $data);
 	}
 	// Function
 
